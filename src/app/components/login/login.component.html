@@ -1,0 +1,95 @@
+<!-- Container della pagina -->
+<div class=" h-100 w-100 nomargin background">
+    <div class="container-fluid h-100 w-100 nopadding">
+        <div class="row h-100 nomargin" [ngClass]="{
+          'justify-content-center' : loginConfiguration.orizontal_align == 'center',
+          'justify-content-start' : loginConfiguration.orizontal_align == 'left',
+          'justify-content-end' : loginConfiguration.orizontal_align == 'right'
+        }">
+            <div class="col-xxl-8 col-xl-8 col-lg-7 col-md-5 col-sm-3 col-3 nopadding  align-self-center" align="center" *ngIf="loginConfiguration.isLogoOutCard && loginConfiguration.orizontal_align == 'right'">
+                <img [src]="image.logo.link" [alt]="image.logo.alt" [ngClass]="{'small': loginConfiguration.logoOutSize == 'small',
+                'medium': loginConfiguration.logoOutSize == 'medium',
+                'large': loginConfiguration.logoOutSize == 'large'}">
+            </div>
+            <!-- Col contenente la card con il form di Login -->
+            <div class="col-xxl-4 col-xl-4 col-lg-5 col-md-7 col-sm-9 col-9" [ngClass]="{
+              'align-self-center' : loginConfiguration.vertical_align == 'center',
+              'align-self-start' : loginConfiguration.vertical_align == 'start',
+              'align-self-end' : loginConfiguration.vertical_align == 'end',
+              'largeCard' : loginConfiguration.size_card == 'large'}">
+
+                <mat-card [ngClass]="{'align-self-center largeCard' : loginConfiguration.size_card == 'large'}">
+                    <div class="row justify-content-center pb-5 pt-3" *ngIf="loginConfiguration.isLogoInCard">
+                        <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8" align="center">
+                            <img [src]="image.logo.link" [alt]="image.logo.alt" [ngClass]="{'small': loginConfiguration.logoInSize == 'small',
+                                'medium': loginConfiguration.logoInSize == 'medium',
+                                'large': loginConfiguration.logoInSize == 'large'}">
+                        </div>
+                    </div>
+
+                    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" [ngClass]="{'marginLarge' : loginConfiguration.size_card == 'large'}">
+                        <div class="row justify-content-center pt-1" *ngIf="loginConfiguration.value == 'username'">
+                            <div class="col-xxl-10 col-xl-12 col-lg-11 col-md-10 col-sm-11 col-12" align="center">
+                                <p>
+                                    <mat-form-field appearance="outline" class="full_width-input">
+                                        <mat-label>Username</mat-label>
+                                        <input matInput placeholder="Username" formControlName="username" />
+                                        <mat-error *ngIf=" f.username.errors && f.username.errors.required ">L'Username è obbligatorio</mat-error>
+                                    </mat-form-field>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center pt-1" *ngIf="loginConfiguration.value == 'email'">
+                            <div class="col-xxl-10 col-xl-12 col-lg-11 col-md-10 col-sm-11 col-12" align="center">
+                                <p>
+                                    <mat-form-field appearance="outline" class="full_width-input">
+                                        <mat-label>Email</mat-label>
+                                        <input matInput placeholder="Email" formControlName="email" />
+                                        <mat-error *ngIf=" f.email.errors && f.email.errors.required ">L'email è obbligatoria</mat-error>
+                                    </mat-form-field>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-xxl-10 col-xl-12 col-lg-11 col-md-10 col-sm-11 col-12" align="center">
+                                <p>
+                                    <mat-form-field appearance="outline" class="full_width-input">
+                                        <mat-label>Password</mat-label>
+                                        <input matInput [type]="isPasswordHidden ? 'password' : 'text'" placeholder="Password" formControlName="password" />
+                                        <button type="button" mat-icon-button matSuffix (click)="onChange()" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="isPasswordHidden">
+                                        <mat-icon>{{isPasswordHidden ? "visibility_off" : "visibility"}}</mat-icon>
+                                      </button>
+                                        <mat-error *ngIf="f.password && f.password.errors">La password è obbligatoria</mat-error>
+                                    </mat-form-field>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-xxl-10 col-xl-12 col-lg-11 col-md-10 col-sm-11 col-12" align="center">
+                                <p id="loginMessageError" class="error-message">{{ error }}</p>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center pt-1 pb-3">
+                            <div class="col" align="center">
+                                <button color="primary" type="submit" [disabled]="loading || loginForm.invalid" mat-raised-button>
+                                <span *ngIf="!loading"> Accedi </span>
+                                <div class="row my-2" *ngIf="loading">
+                                  <div class="col" align="center">
+                                    <mat-spinner diameter="20" color="accent"></mat-spinner>
+                                  </div>
+                                </div>
+                              </button>
+                            </div>
+                        </div>
+                    </form>
+                </mat-card>
+
+            </div>
+            <div class="col-xxl-8 col-xl-8 col-lg-7 col-md-5 col-sm-3 col-3 align-self-center" align="center" *ngIf="loginConfiguration.isLogoOutCard && loginConfiguration.orizontal_align == 'left'">
+                <img [src]="image.logo.link" [alt]="image.logo.alt" [ngClass]="{'small': loginConfiguration.logoOutSize == 'small',
+            'medium': loginConfiguration.logoOutSize == 'medium',
+            'large': loginConfiguration.logoOutSize == 'large'}">
+            </div>
+        </div>
+    </div>
+</div>

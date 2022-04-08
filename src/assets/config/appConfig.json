@@ -1,0 +1,31 @@
+{
+    "passwordEncryption": {
+        "enable": false,
+        "key": "",
+        "_comment": [
+            "enable: true/false;",
+            "key: insert secret key"
+        ]
+    },
+    "login": {
+        "value": "username",
+        "orizontal_align": "center",
+        "vertical_align": "center",
+        "size_card": "small",
+        "isLogoInCard": true,
+        "isLogoOutCard": true,
+        "logoInSize": "medium",
+        "logoOutSize": "large",
+        "_comment": [
+            "value: username/email; ",
+            "orizontal_align (card): center/left/right;",
+            "vertical_align (card): center/start/end;",
+            "size_card: large/small;",
+            "isLogoInCard: true/false;",
+            "isLogoOutCard: true/false;",
+            "logoInSize: small/medium/large/null",
+            "logoOutSize: small/medium/large/null"
+        ]
+
+    }
+}

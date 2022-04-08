@@ -1,0 +1,49 @@
+.error-message {
+    color: red;
+}
+
+.background {
+    background: linear-gradient( rgba(13, 24, 95, 0.9), rgba(69, 202, 252, 0.9));
+    min-height: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.largeCard {
+    height: 100%;
+    padding: 0px !important;
+    border-radius: 0%;
+}
+
+.full_width-input {
+    width: 100%;
+}
+
+.nopadding {
+    padding: 0px !important;
+}
+
+::ng-deep.ng-star-inserted {
+    margin: 0px !important;
+}
+
+.nomargin {
+    margin: 0px !important;
+    ;
+}
+
+.marginLarge {
+    margin: 8px;
+}
+
+.small {
+    width: 64px;
+}
+
+.medium {
+    width: 124px;
+}
+
+.large {
+    width: 248px;
+}

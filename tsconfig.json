@@ -1,0 +1,59 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "allowJs": true,
+    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es5",
+    "module": "es2020",
+    "lib": ["es2020", "dom"]
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  },
+  "typedocOptions": {
+    "entryPoints": [
+      "src/main.ts",
+      // Components
+      "src/app/services/authentication/authentication.service.ts",
+      // Enums
+      "src/app/enum/role.ts",
+      "src/app/enum/path.ts",
+      // Helpers
+      "src/app/helpers/auth.guard.ts",
+      "src/app/helpers/error.interceptor.ts",
+      "src/app/helpers/jwt.interceptor.ts",
+      // Models
+      "src/app/models/user.ts",
+      // Modules
+      // Services
+      // Assets
+      // Environments
+      "src/environments/environment.ts",
+      "src/environments/environment.prod.ts"
+    ],
+    "out": "docs"
+  }
+}
+
+/* It's possibile to generate documentation running this command in console:
+
+npx typedoc 
+
+A /docs folder will be generated */

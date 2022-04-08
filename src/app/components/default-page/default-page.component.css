@@ -1,0 +1,11 @@
+.headerLogo {
+    cursor: pointer;
+    width: 100px;
+}
+
+.background {
+    background: linear-gradient( rgba(13, 24, 95, 0.9), rgba(69, 202, 252, 0.9));
+    min-height: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}

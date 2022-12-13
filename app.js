@@ -32,7 +32,7 @@ function createWindow() {
             slashes: true
         })
     );
-    mainWindow.webContents.openDevTools();
+    //mainWindow.webContents.openDevTools();
     mainWindow.maximize()
     mainWindow.on('closed', function() {
         mainWindow = null

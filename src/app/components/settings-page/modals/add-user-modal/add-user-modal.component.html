@@ -1,0 +1,39 @@
+<div class="row justify-content-center">
+  <div class="col-12" align="center">
+    <h1>Inserisci Utente</h1>
+  </div>
+</div>
+<form [formGroup]="insertUser" (ngSubmit)="submitForm()">
+  <div class="row justify-content-center">
+    <div class="col-12 " align="center">
+      <p>
+        <mat-form-field appearance="outline" class="full_width-input">
+          <mat-label>Username</mat-label>
+          <input matInput placeholder="Username" formControlName="username" />
+        </mat-form-field>
+      </p>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-12 " align="center">
+      <p>
+        <mat-form-field appearance="outline" class="full_width-input">
+          <mat-label>Password</mat-label>
+          <input matInput [type]="isPasswordHidden ? 'password' : 'text'" placeholder="Password" formControlName="password" />
+          <button type="button" mat-icon-button matSuffix (click)="onChange()" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="isPasswordHidden">
+            <mat-icon>{{isPasswordHidden ? "visibility_off" : "visibility"}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </p>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-xxl-10 col-xl-12 col-lg-11 col-md-10 col-sm-11 col-12" align="center">
+      <p *ngIf="error" class="error-message">{{ error }}</p>
+    </div>
+  </div>
+  <div class="col-12 text-center mt-3">
+    <button mat-button color="warn" mat-dialog-close>Chiudi</button>
+    <button mat-button type="submit" color="primary" [disabled]="insertUser.invalid">Salva</button>
+  </div>
+</form>

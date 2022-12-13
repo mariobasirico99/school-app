@@ -35,23 +35,21 @@
                             </div>
                         </mat-list-item>
                         <mat-divider [inset]="true"></mat-divider>
-                        <mat-list-item role="listitem">
-                            <div class="row w-100">
-                                <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-5 col-6">
-                                    <h4 class="listTileTitle listTileTexts">Ruolo</h4>
-                                </div>
-                                <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-7 col-sm-7 col-6">
-                                    <h4 class="listTileTexts text">
-                                        {{ user!.role ? user!.role : "Non presente" }}
-                                    </h4>
-                                </div>
-                            </div>
-                        </mat-list-item>
+
                     </mat-list>
 
                 </mat-card-content>
             </mat-card>
         </div>
-
+        <div class="row justify-content-center" style="margin-top: 10px">
+          <div class="col-3" align="center">
+            <button mat-raised-button (click)="addBook()">Aggiungi Libro</button>
+          </div>
+        </div>
+      <div class="row justify-content-center" style="margin-top: 10px">
+        <div class="col-3" align="center">
+          <button mat-raised-button (click)="addUser()">Aggiungi Utente</button>
+        </div>
+      </div>
     </div>
 </div>

@@ -13,11 +13,13 @@ import { AngularMaterialModule } from './modules/angular-material.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor';
-import { fakeBackendProvider } from './helpers/fake-backend';
 import { PageSpinnerComponent } from './components/page-spinner/page-spinner.component';
 import { DefaultPageComponent } from './components/default-page/default-page.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { SettingsPageComponent } from './components/settings-page/settings-page.component';
+import { AddUserModalComponent } from './components/settings-page/modals/add-user-modal/add-user-modal.component';
+import { AddBookModalComponent } from './components/settings-page/modals/add-book-modal/add-book-modal.component';
+import { OrderModalComponent } from './components/home-page/modals/order-modal/order-modal.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,9 @@ import { SettingsPageComponent } from './components/settings-page/settings-page.
     DefaultPageComponent,
     HomePageComponent,
     SettingsPageComponent,
+    AddUserModalComponent,
+    AddBookModalComponent,
+    OrderModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +47,6 @@ import { SettingsPageComponent } from './components/settings-page/settings-page.
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    fakeBackendProvider,
   ],
   bootstrap: [AppComponent],
 })

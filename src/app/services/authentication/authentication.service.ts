@@ -1,13 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { BehaviorSubject, map, Observable } from 'rxjs';
+import {BehaviorSubject, filter, Observable} from 'rxjs';
 import { User } from 'src/app/models/user';
-import { environment } from 'src/environments/environment';
 import { Path } from 'src/app/enum/path';
-var appConfiguration = require('src/assets/config/appConfig.json');
-/*
-Per usare le implementazioni di electron 
+var appConfiguration = require('../../../assets/config/appConfig.json');
 
 import {IpcRenderer} from 'electron';
 import { Shell} from 'electron';
@@ -19,10 +15,8 @@ declare global {
     };
   }
 }
-
+var CryptoJS = require('crypto-js');
 const { ipcRenderer } = window.require('electron');
-const { shell } = window.require('electron');
-*/
 
 /**
  * It's used for authentication purposes. It saves data from the authentication endpoint to local storage for future usage.
@@ -46,7 +40,7 @@ export class AuthenticationService {
    * @param router A service that provides navigation among views and URL manipulation capabilities
    * @param http A service that provides methods for http requests.
    */
-  constructor(private router: Router, private http: HttpClient) {
+  constructor(private router: Router) {
     this.userSubject = new BehaviorSubject<User | null>(
       JSON.parse(localStorage.getItem('user')!)
     );
@@ -69,40 +63,24 @@ export class AuthenticationService {
    * Crypt @param password if file of configuration.crypto is true, encrypt password with aes method
    * @returns User details retrieved from back-end login endpoint
    */
-  login(username: string, password: string){
-    var encryptedPassword = this.processPassword(password,appConfiguration.passwordEncryption.enable);
-    /* Se si vuole utilizzare il DB usare questa login --> metter il metodo login come async login():Promise<any>
+  async login(username: string, password: string) {
+    const users = await ipcRenderer.invoke("read",{path:"./users.json"})
+    const jsonString = Buffer.from(users).toString('utf8')
+    let result = JSON.parse(jsonString)
+    //var encryptedPassword = this.processPassword(password,appConfiguration.passwordEncryption.enable);
+    let u = result.users.filter((user: { username: string; password: string; }) => {
+      return user.username == username && this.decryptPassword(user.password) == password
+    })
 
-    var result = await ipcRenderer.invoke("loginn",{username:username,password:password})
-      if(result.length >0){
-        result = result[0]
-        if(result.password == encryptedPassword){
-          result.token = `fake-jwt-token.${result.id}`,
-          localStorage.setItem('user', JSON.stringify(result));
-          this.userSubject.next(result);
-          return result
-        }
-        else{
-          return "Credenziali Errate!"
-        }
-      }
-      else{
-        return "Utente non trovato";
-      }
-    */
-    return this.http
-      .post<User>(`${environment.apiUrl}/users/authenticate`, {
-        username,
-        encryptedPassword,
-      })
-      .pipe(
-        map((user) => {
-          localStorage.setItem('user', JSON.stringify(user));
-          this.userSubject.next(user);
-          return user;
-        })
-      );
-    
+    if (u.length > 0) {
+      u = u[0]
+      u.token = `fake-jwt-token.${u.username}`
+      localStorage.setItem('user', JSON.stringify(u));
+      this.userSubject.next(u);
+      return u
+    } else {
+      return {"error": "Credenziali Errate!"}
+    }
   }
 
   /**
@@ -121,11 +99,21 @@ export class AuthenticationService {
    */
   processPassword(password: string, isEncrypted: boolean): string {
     if (isEncrypted) {
-      var CryptoJS = require('crypto-js');
       return CryptoJS.AES.encrypt(
         password,
         appConfiguration.passwordEncryption.key
       ).toString();
+    } else {
+      return password;
+    }
+  }
+  decryptPassword(password: string): string {
+    if (appConfiguration.passwordEncryption.enable) {
+      var CryptoJS = require('crypto-js');
+      return CryptoJS.AES.decrypt(
+        password,
+        appConfiguration.passwordEncryption.key
+      ).toString(CryptoJS.enc.Utf8);;
     } else {
       return password;
     }

@@ -2,7 +2,7 @@
 <div class="container-fluid  background" style="width: 100%; overflow-x: hidden;margin:0px;padding:0px">
     <div class="row justify-content-center m-0 p-0 pt-3 ">
         <div class="col-4 ">
-            <button mat-icon-button *ngIf="isAdmin" style="color: white;" (click)="onHomeRedirect()">
+            <button mat-icon-button style="color: white;" (click)="onHomeRedirect()">
                 <mat-icon>home</mat-icon>
             </button>
             <button mat-icon-button style="color: white;" (click)="onSettingsRedirect()">
@@ -10,7 +10,7 @@
                 </button>
         </div>
         <div class="col-4 align-self-center " align="center">
-            <img class="headerLogo" [src]="image.logo.link" [alt]="image.logo.alt" sizes="40px" (click)="onHomeRedirect()">
+            <img class="headerLogo" [src]="image.logo.link" [alt]="image.logo.alt" sizes="20px" (click)="onHomeRedirect()">
         </div>
         <div class="col-4 " align="end">
             <button mat-icon-button style="color: white;" (click)="redirectToLogin()">

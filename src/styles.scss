@@ -1,4 +1,5 @@
 @import "~@angular/material/theming";
+@import 'material-icons/iconfont/material-icons.css';
 @include mat-core();
 $light-app-theme: mat-light-theme( ( color: ( primary: mat-palette($mat-indigo), accent: mat-palette($mat-pink, A200, A100, A400), warn: mat-palette($mat-red), ), ));
 $dark-app-theme: mat-dark-theme( ( color: ( primary: mat-palette($mat-cyan), accent: mat-palette($mat-blue-gray, A200, A100, A400), warn: mat-palette($mat-amber), ), ));

@@ -25,7 +25,7 @@ module.exports = function(config) {
             suppressAll: true, // removes the duplicated traces
         },
         coverageReporter: {
-            dir: require("path").join(__dirname, "./coverage/terna-launcher-app"),
+            dir: require("path").join(__dirname, "./coverage/school-app"),
             subdir: ".",
             reporters: [{ type: "html" }, { type: "text-summary" }],
             //It's possible to override this configuration for specific files. You can also exclude some code.

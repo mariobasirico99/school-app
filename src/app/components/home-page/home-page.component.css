@@ -1,0 +1,29 @@
+
+table {
+  width: 100%;
+}
+
+.full_width-input {
+  width: 100%;
+}
+
+mat-header-cell,
+mat-cell {
+  justify-content: center;
+}
+
+.flatCard {
+  transition: none !important;
+  box-shadow: none !important;
+  border: 1px solid !important;
+  border-color: #dadce0 !important;
+  border-radius: 8px;
+}
+.listTileTexts {
+  padding-top: 20px;
+}
+
+mat-card-header {
+  display: inline;
+}
+

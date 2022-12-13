@@ -1,7 +1,7 @@
 {
     "passwordEncryption": {
-        "enable": false,
-        "key": "",
+        "enable": true,
+        "key": "SecretKEY",
         "_comment": [
             "enable: true/false;",
             "key: insert secret key"
@@ -14,7 +14,7 @@
         "size_card": "small",
         "isLogoInCard": true,
         "isLogoOutCard": true,
-        "logoInSize": "medium",
+        "logoInSize": "small",
         "logoOutSize": "large",
         "_comment": [
             "value: username/email; ",

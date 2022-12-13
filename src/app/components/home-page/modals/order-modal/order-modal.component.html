@@ -1,0 +1,99 @@
+<div *ngIf="type =='Modifica'">
+  <div class="row justify-content-center">
+    <div class="col-12" align="center">
+      <h1>Modifica Informazioni Libro</h1>
+    </div>
+  </div>
+  <form [formGroup]="insertBook" (ngSubmit)="submitForm()">
+    <div class="row justify-content-center">
+      <div class="col-12" align="center">
+        <p>
+          <mat-form-field appearance="outline" class="full_width-input">
+            <mat-label>Nome Libro</mat-label>
+            <input matInput placeholder="Nome Libro" formControlName="name" />
+          </mat-form-field>
+        </p>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-12" align="center">
+        <p>
+          <mat-form-field appearance="outline" class="full_width-input">
+            <mat-label>Codice Libro</mat-label>
+            <input matInput placeholder="Codice Libro" formControlName="code" />
+          </mat-form-field>
+        </p>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-12" align="center">
+        <p>
+          <mat-form-field appearance="outline" class="full_width-input">
+            <mat-label>Inizio Prestito</mat-label>
+            <input matInput placeholder="dd-mm-yyyy" formControlName="retry" />
+          </mat-form-field>
+        </p>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-12" align="center">
+        <p>
+          <mat-form-field appearance="outline" class="full_width-input">
+            <mat-label>Fine Prestito</mat-label>
+            <input matInput placeholder="dd-mm-yyyy" formControlName="end" />
+          </mat-form-field>
+        </p>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-12" align="center">
+        <p>
+          <mat-form-field appearance="outline" class="full_width-input">
+            <mat-label>Utente Prestito</mat-label>
+            <input matInput placeholder="Utente Prestito" formControlName="username" />
+          </mat-form-field>
+        </p>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+    <div class="col-12" align="center">
+
+      <section class="example-section">
+        <mat-checkbox class="example-margin" (change)="changeCheck()"  [checked]="checked">Progetto</mat-checkbox>
+      </section>
+
+    </div>
+  </div>
+    <div class="row justify-content-center" *ngIf="checked">
+      <div class="col-12" align="center">
+        <p>
+          <mat-form-field appearance="outline" class="full_width-input">
+            <mat-label>Progetto</mat-label>
+            <input matInput placeholder="Progetto" formControlName="prog" />
+          </mat-form-field>
+        </p>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-xxl-10 col-xl-12 col-lg-11 col-md-10 col-sm-11 col-12" align="center">
+        <p *ngIf="error" class="error-message">{{ error }}</p>
+      </div>
+    </div>
+    <div class="col-12 text-center mt-3">
+      <button mat-button color="warn" mat-dialog-close>Chiudi</button>
+      <button mat-button type="submit" color="primary" [disabled]="insertBook.invalid">Salva</button>
+    </div>
+  </form>
+
+</div>
+<div class="row " *ngIf="type == 'Elimina'">
+  <div class="col-12">
+    <span>Sei sicuro di voler eliminare il libro?</span>
+  </div>
+  <div class="col-12">
+    <div class="col-12 text-center">
+      <button mat-button mat-dialog-close>Chiudi</button>
+      <button mat-button (click)="deleteSelected()" mat-dialog-close color="warn">Elimina</button>
+    </div>
+  </div>
+</div>
